@@ -1,10 +1,12 @@
 package com.looking4jobs.jobms.job;
 
+import com.looking4jobs.jobms.job.dto.JobWithCompanyDTO;
+
 import java.util.List;
 
 public interface JobService {
 
-    List<Job> findAll();
+    List<JobWithCompanyDTO> findAll();
 
     void createJob(Job job);
 
