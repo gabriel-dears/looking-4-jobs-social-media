@@ -1,16 +1,16 @@
 package com.looking4jobs.jobms.job;
 
-import com.looking4jobs.jobms.job.dto.JobWithCompanyDTO;
+import com.looking4jobs.jobms.job.dto.JobDTO;
 
 import java.util.List;
 
 public interface JobService {
 
-    List<JobWithCompanyDTO> findAll();
+    List<JobDTO> findAll();
 
     void createJob(Job job);
 
-    Job getJobById(Long id);
+    JobDTO getJobById(Long id);
 
     boolean deleteJobById(Long id);
 
