@@ -9,10 +9,17 @@ services:
     volumes:
       - postgres:/data/postgres
     ports:
-      - "5432:5432"
+      - "30002:5432"
     networks:
       - postgres
     restart: unless-stopped
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - postgres
   pgadmin:
     container_name: pgadmin_container
     image: dpage/pgadmin4
@@ -21,12 +28,17 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-      - pdadmin:/var/lib/pgadmin
+      - pgadmin:/var/lib/pgadmin
     ports:
       - "5050:80"
     networks:
       - postgres
+    user: "${UID}:${GID}"
 
 networks:
   postgres:
     driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
